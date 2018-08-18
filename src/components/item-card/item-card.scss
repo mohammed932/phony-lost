@@ -1,0 +1,26 @@
+item-card {
+   .my-img{
+    width: 20%;
+   }
+   .chat-count{
+    vertical-align: super;
+   }
+   .item-type{
+    color: #3737d6;
+    margin-bottom: 5px;
+   }
+   .item-img{
+    height: 85px;
+   }
+   .item-date{
+    color: gray;
+   }
+   .item-time{
+    color: gray;
+    margin-bottom: 10px; 
+   }
+   .item-wrapper{
+    background: white;
+    margin-bottom: 10px;
+   }
+}

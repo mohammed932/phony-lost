@@ -1,0 +1,113 @@
+page-login {
+    .selection-wrapper{
+        margin-top: 80px;
+        z-index: 999999;
+        position: relative;
+    }
+    ion-header {
+        .toolbar {
+          position: absolute;
+      
+          .toolbar-background {
+            background: transparent;
+          }
+          .toolbar-title {
+            color: black;
+          }
+        }
+    }
+    .header-ios .toolbar-ios:last-child .toolbar-background-ios{
+        border-width: 0;
+    }
+    .toolbar .toolbar-background{
+        background: transparent !important
+    }
+    .w-100{
+        width: 100%;
+    }
+    .logo{
+        margin: 0 auto;
+        display: block;
+        width: 280px;
+    }
+    .login-fb{
+        background: #2626ae;
+        .ion-ios-person-outline:before{
+            position: absolute;
+            left: 20px;
+            top: 6px;
+        }
+    }
+    .login-gmail{
+        margin-top: 10px;
+        background: #b63434;
+        .ion-ios-person-outline:before{
+            position: absolute;
+            left: 20px;
+            top: 6px;
+        }
+    }
+    .or{
+        margin: auto;
+        text-align: center;
+        padding: 15px;
+        color: white;
+        font-size: 20px;
+    }
+
+    .create-account-txt{
+        text-align: center;
+        margin-top: 15px;
+        color: white;
+    }
+
+    .list{
+        width: 80%;
+        margin: auto;
+        .item{
+            background: transparent;
+            border-bottom: 1px solid gray;
+            margin-bottom: 20px;
+        }
+       
+    }
+
+    .list-ios > .item-block:first-child{
+        border-top:0 !important;
+    }
+    .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{
+        border-bottom: 0.55px solid gray;
+    }
+
+    .item-ios.item-block .item-inner{
+        border-bottom: 0.55px solid gray;
+    }
+    .list-ios > .item-block:last-child,  .list-ios > .item-wrapper:last-child .item-block{
+        border-bottom: 0 !important;
+    }
+    .item-ios.item-block .item-inner{
+        border-bottom: 0.55px solid gray !important;
+    }
+    .list .item{
+        border-bottom: 0;
+    }
+
+    // .scroll-content {
+    //     overflow-y: hidden !important;
+    // } 
+    
+    .scroll-content{
+        background-image: url(../assets/imgs/bg.png);
+        background-size: 100% 100%;
+    }
+
+    .ion-ios-person-outline:before{
+        color: white;
+        font-size: 28px;
+    }
+
+    .ion-ios-lock-outline:before{
+        color: white;
+        font-size: 28px;  
+    }
+}

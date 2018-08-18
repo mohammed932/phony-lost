@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-icon name="ios-cog-outline"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-row class="selection-wrapper">
+    <div class="text-center w-100">
+      <img src="assets/imgs/logo.svg" class="logo">
+    </div>
+  </ion-row>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-person-outline"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-lock-outline"></ion-icon>
+      </ion-label>
+      <ion-input placeholder="password" type="password"></ion-input>
+    </ion-item>
+
+
+    <button ion-button round block full color="primary" color="primary">Login</button>
+
+    <div class="or">OR</div>
+
+    <button class="login-fb" ion-button round block full color="blue" color="primary">
+      <ion-icon name="ios-person-outline"></ion-icon>Login by facebook
+    </button>
+    <button ion-button class="login-gmail" round block full color="danger" color="primary">
+      <ion-icon name="ios-person-outline"></ion-icon>Login by Gmail
+    </button>
+
+    <div class="create-account-txt">Create an account</div>
+
+
+  </ion-list>
+
+
+</ion-content>

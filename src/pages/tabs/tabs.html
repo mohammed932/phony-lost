@@ -1,0 +1,14 @@
+<ion-tabs mode="md" selectedIndex="1" #myTabs>
+
+
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Market" tabIcon="ios-basket"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Login" tabIcon="ios-person-outline"></ion-tab>
+
+  <ion-fab bottom center style="bottom:25px;">
+    <button ion-fab [ngClass]="fabColor" >
+      <ion-icon name="ios-basket"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-tabs>
