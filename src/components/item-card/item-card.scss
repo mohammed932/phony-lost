@@ -1,12 +1,12 @@
 item-card {
    .my-img{
-    width: 20%;
+    width: 6%;
    }
    .chat-count{
-    vertical-align: super;
+    vertical-align: top;
    }
    .item-type{
-    color: #3737d6;
+    color: #244b91;
     margin-bottom: 5px;
    }
    .item-img{
@@ -14,6 +14,7 @@ item-card {
    }
    .item-date{
     color: gray;
+    margin-bottom: 3px;
    }
    .item-time{
     color: gray;
@@ -21,6 +22,11 @@ item-card {
    }
    .item-wrapper{
     background: white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+   }
+   .item-price{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: black;
    }
 }

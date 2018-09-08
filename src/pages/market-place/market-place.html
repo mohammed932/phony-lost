@@ -1,7 +1,18 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>market-place</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Market Place</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -9,4 +20,7 @@
 
 <ion-content padding>
   <item-card *ngFor="let item of items"></item-card>
+  <!-- <ion-fab top right>
+    <button ion-fab class="add-market"><span class="add-txt">Add</span></button>
+  </ion-fab> -->
 </ion-content>

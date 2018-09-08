@@ -110,4 +110,18 @@ page-login {
         color: white;
         font-size: 28px;  
     }
+
+    .ion-ios-cog-outline:before{
+        color: white;
+    }
+
+    .phony-txt{
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .item-input ion-input, .item-input ion-textarea{
+        color: white !important;
+    }
 }

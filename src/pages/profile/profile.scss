@@ -1,0 +1,56 @@
+page-profile {
+  .card-icon{
+    width: 100%;
+    display: block;
+    margin: auto;
+  }
+  .cat-txt{
+    font-size: 18px;
+    color: white;
+  }
+  .card-header-wrapper{
+    background: #ff5555;
+  }
+  .card-header-wrapper1{
+    background: #a43ec1;
+  }
+
+  .card-header-wrapper2{
+    background: #65dfbb;
+  }
+
+  .add-btn{
+    background: white;
+    color: black;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+  }
+  .card-header-second{
+      background: #ff1a1a;
+  }
+  .card-header-second1{
+    background: #701a99;
+  }
+  .card-header-second2{
+    background: #16bc77;
+  }
+  .type{
+    color: white;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  .lost,.sell{
+    color: white;
+    font-size: 15px;
+  }
+  .items-row{
+    background: white;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .item-txt{
+    font-size: 17px;
+  }
+}

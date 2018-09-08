@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 
 
@@ -9,12 +9,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data: any = {}
+  constructor(public navCtrl: NavController,
+    private event: Events,
+    public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  login() {
+    localStorage.setItem('isLogin', JSON.stringify(true))
+    this.navCtrl.push('ProfilePage').then(() => {
+      this.event.publish('LoginSuccess')
+    })
   }
 
 }

@@ -1,5 +1,7 @@
 {
   "name": "phony-lost",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

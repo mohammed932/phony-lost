@@ -1,17 +1,11 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Home</ion-title>
+    <ion-title>Welcome to Phony Lost</ion-title>
 
     <ion-buttons start>
       <button ion-button icon-only>
         <ion-icon name="md-menu"></ion-icon>
-      </button>
-    </ion-buttons>
-
-    <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="ios-cog-outline"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -23,7 +17,12 @@
 <ion-content>
 
   <ion-row class="selection-wrapper">
-    <div class="slogin">What do you want to check ?</div>
+    <div class="slogin">What do you want to check!</div>
+    <div class="imgs-wrapper">
+      <img src="assets/imgs/sports-car.svg" class="home-img">
+      <img src="assets/imgs/smartphone.svg" class="home-img">
+      <img src="assets/imgs/id-card.svg" class="home-img">
+    </div>
   </ion-row>
 
   <ion-list>
@@ -32,8 +31,14 @@
       <ion-input placeholder="Enter Serial Number Here" type="text"></ion-input>
     </ion-item>
 
-    <button ion-button round block color="primary" class="check-btn" color="primary">Check</button>
+    <button ion-button round block  class="check-btn" color="primary" (click)="Search()">Check</button>
 
+
+    <button ion-button (click)="scan()" round block class="scan-btn">
+      <ion-icon name="ios-barcode-outline"></ion-icon>Camera Scan
+    </button>
+
+    <!-- <div class="scan-txt" (click)="scan()">Or Scan</div> -->
 
 
   </ion-list>

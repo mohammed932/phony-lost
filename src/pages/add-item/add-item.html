@@ -1,0 +1,92 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Add {{getCat()}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Model</ion-label>
+      <ion-select>
+        <ion-option value="nes">NES</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+        <ion-option value="genesis">Sega Genesis</ion-option>
+        <ion-option value="saturn">Sega Saturn</ion-option>
+        <ion-option value="snes">SNES</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="cat == 'mobile'">
+      <ion-label>IEMI Number</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="cat == 'car'">
+      <ion-label>Serial Number</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="cat == 'car'">
+      <ion-label>Motor Number</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="cat == 'car'">
+      <ion-label>Plate Number</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{getCat()}} status</ion-label>
+      <ion-select>
+        <ion-option value="nes">Lost</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-row>
+      <ion-col col-12>
+        <div class="reward-txt no-padding-left">Financial reward in case of theft</div>
+      </ion-col>
+      <ion-col col-4 class="no-padding-left no-padding-bottom">
+        <ion-item>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-8 class="no-padding-right no-padding-bottom">
+        <ion-item>
+          <ion-label>Select currency</ion-label>
+          <ion-select>
+            <ion-option value="nes">Dollar</ion-option>
+            <ion-option value="n64">LE</ion-option>
+            <ion-option value="ps">GBA</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-label>Place of theft</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Date of theft</ion-label>
+      <ion-select>
+        <ion-option value="nes">Lost</ion-option>
+        <ion-option value="n64">Nintendo64</ion-option>
+        <ion-option value="ps">PlayStation</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

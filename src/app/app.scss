@@ -1,5 +1,8 @@
 
-
+// * {
+//     font-family: 'Cairo', sans-serif;
+//     font-size: 13px !important;
+// }
 
 .toolbar .toolbar-title{
    color: white !important;
@@ -7,7 +10,29 @@
 .fab{
     background-color: #c73030;
 }
-
+.ion-md-menu:before{
+    color: white;
+}
 .content-ios{
     background-color: #efefef;
+}
+
+ion-app.ios [padding] .scroll-content{
+    padding: 8px;
+}
+
+.no-padding-left{
+    padding-left: 0;
+}
+
+.no-padding-right{
+    padding-right: 0; 
+}
+
+.no-padding-bottom{
+    padding-bottom: 0; 
+}
+
+.no-padding-top{
+    padding-top: 0; 
 }

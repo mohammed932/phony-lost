@@ -3,10 +3,10 @@
   <ion-navbar>
     <ion-title>Login</ion-title>
     <ion-buttons start>
-        <button ion-button icon-only>
-          <ion-icon name="ios-cog-outline"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button icon-only>
+        <ion-icon name="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +16,8 @@
 
   <ion-row class="selection-wrapper">
     <div class="text-center w-100">
-      <img src="assets/imgs/logo.svg" class="logo">
+      <!-- <img src="assets/imgs/logo.svg" class="logo"> -->
+      <div class="phony-txt">Welcome to Phony Lost</div>
     </div>
   </ion-row>
 
@@ -26,20 +27,20 @@
       <ion-label>
         <ion-icon name="ios-person-outline"></ion-icon>
       </ion-label>
-      <ion-input placeholder="username" type="text"></ion-input>
+      <ion-input [(ngModel)]="data.username" placeholder="Username" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>
         <ion-icon name="ios-lock-outline"></ion-icon>
       </ion-label>
-      <ion-input placeholder="password" type="password"></ion-input>
+      <ion-input [(ngModel)]="data.password" placeholder="Password" type="Password"></ion-input>
     </ion-item>
 
 
-    <button ion-button round block full color="primary" color="primary">Login</button>
+    <button ion-button round block full color="primary" color="primary" (click)="login()">Login</button>
 
-    <div class="or">OR</div>
+    <div class="or">Or</div>
 
     <button class="login-fb" ion-button round block full color="blue" color="primary">
       <ion-icon name="ios-person-outline"></ion-icon>Login by facebook
