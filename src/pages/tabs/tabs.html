@@ -1,10 +1,9 @@
-<ion-tabs mode="md" [selectedIndex]="tabIndex" #myTabs>
+<ion-tabs mode="md"  [selectedIndex]="tabIndex" #myTabs (ionChange)="selectTab()">
 
 
-  <ion-tab [root]="tab2Root" tabTitle="Market" tabIcon="basket"></ion-tab>
+  <ion-tab [root]="tab2Root"  tabTitle="Market" tabIcon="basket"></ion-tab>
   <ion-tab [root]="tab1Root"></ion-tab>
-  <ion-tab [root]="tab3Root" [tabTitle]="myTitle" tabIcon="contact"></ion-tab>
-
+  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon="contact"></ion-tab>
   <ion-fab bottom center style="bottom:25px;" [hidden]="mustHide" (click)="scan()">
     <button ion-fab [ngClass]="fabColor" >
       <ion-icon name="search"></ion-icon>

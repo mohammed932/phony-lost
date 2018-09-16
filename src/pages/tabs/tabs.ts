@@ -13,11 +13,10 @@ export class TabsPage {
   fabColor = 'fabColorActive';
   tab1Root = 'HomePage';
   tab2Root = 'MarketPlacePage';
-  tab3Root = 'LoginPage'
+  tab3Root = 'ProfilePage'
   constructor(private event: Events,
     private navCtrl: NavController,
     public navParam: NavParams) {
-
 
   }
 
@@ -29,15 +28,16 @@ export class TabsPage {
 
   checkLogin() {
     if (JSON.parse(localStorage.getItem('isLogin'))) {
-      this.tab3Root = "ProfilePage"
+      // this.tab3Root = "ProfilePage"
       this.myTitle = 'Profile'
     }
   }
   checkEvents() {
     this.event.subscribe('LoginSuccess', () => {
       console.log("LoginSuccess event notify")
-      this.tab3Root = "ProfilePage"
+      // this.tab3Root = "ProfilePage"
       this.myTitle = 'Profile'
+      this.tabIndex = 2
     })
 
     this.event.subscribe('hideFabBtn', () => {
@@ -49,14 +49,23 @@ export class TabsPage {
     })
 
     this.event.subscribe('profileFire', () => {
-      this.tab3Root = 'ProfilePage'
+      // this.tab3Root = 'ProfilePage'
       this.navCtrl.setRoot('TabsPage', { tabIndex: 0 })
     })
   }
 
-
   scan() {
     this.navCtrl.setRoot('TabsPage', { tabIndex: 1 })
+  }
+
+  selectTab() {
+    let currentTab = this.tabRef.getSelected()
+    console.log('currentTab : ', currentTab);
+  }
+
+  test() {
+    console.log("test");
+
   }
 
 }

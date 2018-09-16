@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,9 +10,12 @@ export class ProfilePage {
   Cars: any[] = []
   Mobiles: any[] = []
   IDS: any[] = []
+  isLogin: boolean = false
   constructor(public navCtrl: NavController,
     private event: Events,
+    private modalCtrl: ModalController,
     public navParams: NavParams) {
+    this.checkEvents()
     for (let i = 0; i < 1; i++) {
       this.Cars.push(i)
     }
@@ -25,6 +28,17 @@ export class ProfilePage {
   }
 
 
+  checkEvents() {
+    this.event.subscribe('LoginSuccess', () => {
+      this.isLogin = true
+    })
+  }
+
+  ionViewWillEnter() {
+    // this.isLogin = JSON.parse(localStorage.getItem('isLogin'))
+  }
+
+
   addItem(cat) {
     this.event.publish('hideFabBtn')
     this.navCtrl.push('AddItemPage', { cat })
@@ -32,6 +46,12 @@ export class ProfilePage {
 
   ionViewWillLeave() {
     this.event.publish('profileFire')
+  }
+
+  login() {
+    console.log("ddd");
+    let modal = this.modalCtrl.create('LoginPage')
+    modal.present()
   }
 
 }
