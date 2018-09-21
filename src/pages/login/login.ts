@@ -17,7 +17,7 @@ export class LoginPage {
   }
 
   login() {
-    // localStorage.setItem('isLogin', JSON.stringify(true))
+    localStorage.setItem('isLogin', JSON.stringify(true))
     this.event.publish('LoginSuccess')
     this.viewCtrl.dismiss()
   }

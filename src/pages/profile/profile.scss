@@ -65,4 +65,11 @@ page-profile {
     text-align: center;
     margin-top: 30% !important;
   }
+
+  .item-ios{
+    padding-left: 0 !important;
+  }
+  .item-ios.item-block .item-inner{
+    border-bottom:0 !important;
+  }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ModalController, App } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,9 +13,14 @@ export class ProfilePage {
   isLogin: boolean = false
   constructor(public navCtrl: NavController,
     private event: Events,
+    private app: App,
     private modalCtrl: ModalController,
     public navParams: NavParams) {
     this.checkEvents()
+    this.buildArrays()
+  }
+
+  buildArrays(){
     for (let i = 0; i < 1; i++) {
       this.Cars.push(i)
     }
@@ -35,18 +40,22 @@ export class ProfilePage {
   }
 
   ionViewWillEnter() {
-    // this.isLogin = JSON.parse(localStorage.getItem('isLogin'))
+    this.isLogin = JSON.parse(localStorage.getItem('isLogin'))
   }
 
 
   addItem(cat) {
-    this.event.publish('hideFabBtn')
+    console.log("sss : ",cat);
+    
+    // console.log("a7a77a7");
+    // this.app.getActiveNav().push('AddItemPage', { cat })
+    // this.event.publish('hideFabBtn')
     this.navCtrl.push('AddItemPage', { cat })
   }
 
-  ionViewWillLeave() {
-    this.event.publish('profileFire')
-  }
+  // ionViewWillLeave() {
+  //   this.event.publish('profileFire')
+  // }
 
   login() {
     console.log("ddd");

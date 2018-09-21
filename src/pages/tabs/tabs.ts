@@ -6,8 +6,6 @@ import { Tabs, Tab, Events, NavParams, IonicPage, NavController } from 'ionic-an
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  @ViewChild('myTabs') tabRef: Tabs;
-  tabIndex = 1
   mustHide: boolean = false
   myTitle = 'Login'
   fabColor = 'fabColorActive';
@@ -17,27 +15,26 @@ export class TabsPage {
   constructor(private event: Events,
     private navCtrl: NavController,
     public navParam: NavParams) {
-
+      this.checkEvents()
+      this.checkLogin()
   }
 
   ionViewWillEnter() {
-    this.tabIndex = this.navParam.get('tabIndex')
-    this.checkEvents()
-    // this.checkLogin()
+    // this.tabIndex = this.navParam.get('tabIndex')
   }
 
   checkLogin() {
+    
     if (JSON.parse(localStorage.getItem('isLogin'))) {
-      // this.tab3Root = "ProfilePage"
+      this.tab3Root = "ProfilePage"
       this.myTitle = 'Profile'
     }
   }
   checkEvents() {
     this.event.subscribe('LoginSuccess', () => {
       console.log("LoginSuccess event notify")
-      // this.tab3Root = "ProfilePage"
+      this.tab3Root = "ProfilePage"
       this.myTitle = 'Profile'
-      this.tabIndex = 2
     })
 
     this.event.subscribe('hideFabBtn', () => {
@@ -48,24 +45,15 @@ export class TabsPage {
       this.mustHide = false
     })
 
-    this.event.subscribe('profileFire', () => {
-      // this.tab3Root = 'ProfilePage'
-      this.navCtrl.setRoot('TabsPage', { tabIndex: 0 })
-    })
   }
 
   scan() {
     this.navCtrl.setRoot('TabsPage', { tabIndex: 1 })
   }
 
-  selectTab() {
-    let currentTab = this.tabRef.getSelected()
-    console.log('currentTab : ', currentTab);
-  }
 
   test() {
     console.log("test");
-
   }
 
 }
