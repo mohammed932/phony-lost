@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{item.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-slides pager="true" style="height: 233px;">
+    <ion-slide> <img src="assets/imgs/phone1.jpg" class="item-img"></ion-slide>
+    <ion-slide> <img src="assets/imgs/phone2.jpg" class="item-img"></ion-slide>
+  </ion-slides>
+
+  <ion-list>
+
+    <ion-item>
+      <div item-start>Price</div>
+      <div item-end>1400 EGP</div>
+    </ion-item>
+
+    <ion-item>
+      <div item-start>brand</div>
+      <div item-end>Iphone</div>
+    </ion-item>
+
+    <ion-item>
+      <div item-start>Model</div>
+      <div item-end>iphone X</div>
+    </ion-item>
+
+    <ion-item>
+      <div item-start>Publish Date</div>
+      <div item-end>Sat 22:05 PM</div>
+    </ion-item>
+
+    <ion-item>
+      <div item-start>Device Owner</div>
+      <div item-end>Mohamed mokhtar</div>
+    </ion-item>
+
+    <ion-item>
+      <div item-start>Address</div>
+      <div item-end>Cairo-downtown</div>
+    </ion-item>
+
+    <ion-item class="desc-item">
+      <!-- <div item-start>Desc</div> -->
+      <div item-end>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+        typesetting, remaining essentially unchanged.
+      </div>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-fab bottom left>
+    <button ion-fab color="primary" (click)="ChooseContactWay()">
+      <ion-icon name="custom-phone"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

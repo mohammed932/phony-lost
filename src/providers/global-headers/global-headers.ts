@@ -13,15 +13,9 @@ import { Observable } from 'rxjs/Observable';
 export class globalInterceptor implements HttpInterceptor {
   constructor(private storage: Storage, private event: Events) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = JSON.parse(localStorage.getItem('access_token'))
-    this.event.subscribe('accessTokenOccur', (token) => {
-      token = JSON.parse(localStorage.getItem('access_token'))
-    })
     const newRequest = req.clone({
       setHeaders: {
-        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
-        'Accept-Language': `${localStorage.getItem('lang')}`
       }
     })
 

@@ -31,33 +31,41 @@
       </ion-row>
 
       <ion-row class="card-header-second">
-        <ion-col col-6>
+        <ion-col col-7>
           <div class="type">Type</div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-2>
           <div class="lost">Lost</div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-2>
           <div class="sell">Sell</div>
         </ion-col>
+        <ion-col col-1></ion-col>
       </ion-row>
 
       <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let id of Cars">
+        <ion-col col-12 *ngFor="let car of Cars;let index = index">
           <ion-row>
-            <ion-col col-6 align-self-center>
-              <div class="item-txt">Kia</div>
+            <ion-col col-7 align-self-center (click)="openItem(car , 'car')">
+              <div class="item-txt">{{car.brand}}
+                <span *ngIf="car.model">- {{car.model}}</span>
+              </div>
             </ion-col>
-            <ion-col col-3 class="no-padding-left">
+            <ion-col col-2 class="no-padding-left no-padding-right">
+              <ion-item class="more-marign-left">
+                <ion-toggle item-start [checked]="car.status == 'LOST'" (ionChange)="changeItemLostStatus($event , car)"></ion-toggle>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 class="no-padding-left">
               <ion-item>
                 <ion-toggle item-start></ion-toggle>
               </ion-item>
             </ion-col>
-            <ion-col col-3 class="no-padding-left">
-              <ion-item>
-                <ion-toggle item-start></ion-toggle>
-              </ion-item>
+
+            <ion-col col-1 class="no-padding-left" align-self-center>
+              <ion-icon name="custom-trash" class="trash-icon" (click)="ConfirmDeleteItem(car , index)"></ion-icon>
             </ion-col>
+
           </ion-row>
         </ion-col>
       </ion-row>
@@ -85,37 +93,48 @@
       </ion-row>
 
       <ion-row class="card-header-second1">
-        <ion-col col-6>
+        <ion-col col-7>
           <div class="type">Type</div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-2>
           <div class="lost">Lost</div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-2>
           <div class="sell">Sell</div>
         </ion-col>
+        <ion-col col-1></ion-col>
       </ion-row>
 
       <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let id of Mobiles">
+        <ion-col col-12 *ngFor="let mobile of Mobiles;let index = index">
           <ion-row>
-            <ion-col col-6 align-self-center>
-              <div class="item-txt">Huawii</div>
+            <ion-col col-7 align-self-center (click)="openItem(mobile , 'mobile')">
+              <div class="item-txt">{{mobile.brand}}
+                <span *ngIf="mobile.model">- {{mobile.model}}</span>
+              </div>
             </ion-col>
-            <ion-col col-3 class="no-padding-left">
+            <ion-col col-2 class="no-padding-left no-padding-right">
+              <ion-item class="more-marign-left">
+                <ion-toggle item-start [checked]="mobile.status == 'LOST'" (ionChange)="changeItemLostStatus($event , mobile)"></ion-toggle>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2 class="no-padding-left">
               <ion-item>
                 <ion-toggle item-start></ion-toggle>
               </ion-item>
             </ion-col>
-            <ion-col col-3 class="no-padding-left">
-              <ion-item>
-                <ion-toggle item-start></ion-toggle>
-              </ion-item>
+
+            <ion-col col-1 class="no-padding-left" align-self-center>
+              <ion-icon name="custom-trash" class="trash-icon" (click)="ConfirmDeleteItem(mobile , index)"></ion-icon>
             </ion-col>
+
           </ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+
+
 
     <!-- Identification Card -->
     <ion-grid class="card-grid">
@@ -131,7 +150,7 @@
           </ion-row>
         </ion-col>
         <ion-col col-2>
-          <button ion-button class="add-btn" icon-only (click)="addItem('id')">
+          <button ion-button class="add-btn" icon-only (click)="addItem('card')">
             <ion-icon name="add"></ion-icon>
           </button>
         </ion-col>
@@ -150,7 +169,7 @@
       </ion-row>
 
       <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let id of IDS">
+        <ion-col col-12 *ngFor="let card of Cards">
           <ion-row>
             <ion-col col-6 align-self-center>
               <div class="item-txt">Credit Card</div>

@@ -1,13 +1,7 @@
 <ion-tabs mode="md"  selectedIndex="1" #myTabs>
 
-
-  <ion-tab [root]="tab2Root"  tabTitle="Market" tabIcon="basket"></ion-tab>
-  <ion-tab [root]="tab1Root"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon="contact"></ion-tab>
-  <ion-fab bottom center style="bottom:25px;" [hidden]="mustHide" (click)="scan()">
-    <button ion-fab [ngClass]="fabColor" >
-      <ion-icon name="search"></ion-icon>
-    </button>
-  </ion-fab>
+  <ion-tab [root]="tab2Root"  tabTitle="Market" tabIcon="custom-market"></ion-tab>
+  <ion-tab [root]="tab1Root" tabTitle="Search" tabIcon="custom-search"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon="custom-profile"></ion-tab>
 
 </ion-tabs>

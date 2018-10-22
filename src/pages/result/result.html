@@ -8,21 +8,30 @@
 
 
 <ion-content padding>
-  <div class="theft-report-txt">
-    The theft of this phone was reported on
+  <div *ngIf="Result">
+
+    <div class="theft-report-txt">
+      The theft of this phone was reported on
+    </div>
+    <div class="result-wrapper">
+      <div class="theft-title">Device Type</div>
+      <div class="my-txt">{{Result?.brand}}</div>
+      <div class="theft-title">Name of device owner</div>
+      <div class="my-txt">Ahmed ali</div>
+      <div class="theft-title">Phone number</div>
+      <div class="my-txt">01028734848</div>
+      <!-- <div class="theft-title">E-mail</div>
+          <div class="my-txt">mohamed@gmail.com</div> -->
+      <div class="theft-title">Serial number</div>
+      <div class="my-txt">{{Result?.imei}}</div>
+      <div class="theft-title">Finacial reward</div>
+      <div class="my-txt">{{Result?.award}} L.E</div>
+    </div>
+
   </div>
-  <div class="result-wrapper">
-    <div class="theft-title">Device Type</div>
-    <div class="my-txt">Lenovo</div>
-    <div class="theft-title">Name of device owner</div>
-    <div class="my-txt">Ahmed ali</div>
-    <div class="theft-title">Phone number</div>
-    <div class="my-txt">01028734848</div>
-    <div class="theft-title">E-mail</div>
-    <div class="my-txt">mohamed@gmail.com</div>
-    <div class="theft-title">Serial number</div>
-    <div class="my-txt">28498592952</div>
-    <div class="theft-title">Finacial reward</div>
-    <div class="my-txt">200 L.E</div>
+
+  <div class="theft-report-txt" *ngIf="1Result">
+    No result Found For {{this.search.itemCode}}
   </div>
+
 </ion-content>

@@ -18,7 +18,20 @@ page-profile {
   .card-header-wrapper2{
     background: #65dfbb;
   }
+  .toggle{
+    padding: 6px 0px 5px 0 !important;
+  }
+  .item.item-block .item-inner{
+    padding-right : 0 !important;
+  }
+  ion-icon[class*="custom-trash"]{
+    font-size: 35px;
+    color: #00a9ef;
+  }
 
+  .more-marign-left{
+    margin-left: -3px !important;
+  }
   .add-btn{
     background: white;
     color: black;
@@ -66,10 +79,14 @@ page-profile {
     margin-top: 30% !important;
   }
 
-  .item-ios{
+  .item{
     padding-left: 0 !important;
   }
   .item-ios.item-block .item-inner{
+    border-bottom:0 !important;
+  }
+
+  .item-md.item-block .item-inner{
     border-bottom:0 !important;
   }
 }

@@ -7,15 +7,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'market-place.html',
 })
 export class MarketPlacePage {
-  items: any[] = []
+  items: any[] = [
+    { id: 1, name: 'iphone-5 good' },
+    { id: 2, name: 'samsung good condtion' },
+    { id: 3, name: 'audi car' },
+    { id: 4, name: 'lancer puma' },
+    { id: 5, name: 'hyundi verna' },
+    { id: 6, name: 'kia kopi' },
+  ]
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log("jffff");
-    
-    for (let i = 0; i < 10; i++) {
-      this.items.push(i)
-    }
+
   }
 
+  itemDetails(item){
+   this.navCtrl.push('ItemDetailsPage',{item})
+  }
 
 
 }

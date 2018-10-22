@@ -11,6 +11,7 @@ import { SettingsProvider } from '../providers/settings/settings';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserProvider } from '../providers/user/user';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ApiProvider } from '../providers/api/api';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true,
-      backButtonText: ''
+      backButtonText: '',
+      mode : 'ios'
     })
   ],
   bootstrap: [IonicApp],
@@ -42,7 +44,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     ItemsProvider,
     SettingsProvider,
     UserProvider,
-    Keyboard
+    Keyboard,
+    ApiProvider
   ]
 })
 export class AppModule { }

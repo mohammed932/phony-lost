@@ -19,19 +19,18 @@
   <ion-row class="selection-wrapper">
     <div class="slogin">What do you want to check!</div>
     <div class="imgs-wrapper">
-      <img src="assets/imgs/sports-car.svg" class="home-img">
-      <img src="assets/imgs/smartphone.svg" class="home-img">
-      <img src="assets/imgs/id-card.svg" class="home-img">
+      <img *ngFor="let cat of Cats;let index=index" [src]="cat.img" class="home-img" (click)="selectCategory(index , cat.type)"
+        [class.activeBorder]="cat.isActive">
     </div>
   </ion-row>
 
   <ion-list>
 
     <ion-item>
-      <ion-input placeholder="Enter Serial Number Here" type="text"></ion-input>
+      <ion-input [(ngModel)]="data.itemCode" placeholder="Enter Serial Number Here" type="text"></ion-input>
     </ion-item>
 
-    <button ion-button round block  class="check-btn" color="primary" (click)="Search()">Check</button>
+    <button ion-button round block class="check-btn" color="primary" (click)="Search(data.itemCode)">Check</button>
 
 
     <button ion-button (click)="scan()" round block class="scan-btn">

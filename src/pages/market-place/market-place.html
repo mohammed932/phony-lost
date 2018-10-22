@@ -19,8 +19,5 @@
 
 
 <ion-content padding>
-  <item-card *ngFor="let item of items"></item-card>
-  <!-- <ion-fab top right>
-    <button ion-fab class="add-market"><span class="add-txt">Add</span></button>
-  </ion-fab> -->
+  <item-card *ngFor="let item of items" (click)="itemDetails(item)"></item-card>
 </ion-content>

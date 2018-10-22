@@ -1,7 +1,8 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Add {{getCat()}}</ion-title>
+    <ion-title *ngIf="!item">Add {{getCat()}}</ion-title>
+    <ion-title *ngIf="item">{{item.brand}} - {{item.model}} </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,45 +13,57 @@
 
     <ion-item>
       <ion-label>Brand</ion-label>
-      <ion-select [(ngModel)]="data.brand">
-        <ion-option value="sony">Sony</ion-option>
-        <ion-option value="samsung">Samsung</ion-option>
-        <ion-option value="iphone">iphone</ion-option>
-        <ion-option value="opp">Opp</ion-option>
-        <ion-option value="huawei">Huawei</ion-option>
+      <ion-select [(ngModel)]="data.brand" (ionChange)="selectModel(data.brand)">
+        <ion-option [value]="brand.id" *ngFor="let brand of Brands">{{brand.brandName}}</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item *ngIf="cat == 'mobile'">
+    <ion-item>
+      <ion-label>Model</ion-label>
+      <ion-select [(ngModel)]="data.ModelID">
+        <ion-option [value]="model.id" *ngFor="let model of Models">{{model.modelName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="cat.name == 'mobile'">
       <ion-label>IEMI Number</ion-label>
       <ion-input [(ngModel)]="data.imei" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat == 'car'">
+    <ion-item *ngIf="cat.name == 'mobile'">
+      <ion-label>IEMI Number 2</ion-label>
+      <ion-input [(ngModel)]="data.imei2" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="cat.name == 'car'">
       <ion-label>Serial Number</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="data.chassisNumber" type="text"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="cat == 'car'">
       <ion-label>Motor Number</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="data.motorNumber" type="text"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="cat == 'car'">
       <ion-label>Plate Number</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="data.plateNumber" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="cat !='card'">
+      <ion-label>Purchase Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" min="2010" max="2030" [(ngModel)]="data.purchasingDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>{{getCat()}} status</ion-label>
-      <ion-select [(ngModel)]="data.status">
-        <ion-option value="Lost">Lost</ion-option>
-        <ion-option value="not_lost">not lost</ion-option>
+      <ion-select [(ngModel)]="data.StatusId">
+        <ion-option [value]="case.id" *ngFor="let case of Cases">{{case.statusTag}}</ion-option>
       </ion-select>
     </ion-item>
 
 
-    <ion-row>
+    <ion-row *ngIf="data.status == 'Lost'">
       <ion-col col-12>
         <div class="reward-txt no-padding-left">Financial reward in case of theft</div>
       </ion-col>
@@ -71,21 +84,22 @@
       </ion-col>
     </ion-row>
 
-    <ion-item>
+    <ion-item *ngIf="data.status == 'Lost'">
       <ion-label>Place of theft</ion-label>
       <ion-input [(ngModel)]="data.lostPlace" type="text"></ion-input>
     </ion-item>
 
+    <ion-item *ngIf="data.status == 'Lost'">
+      <ion-label>Theft Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" min="2010" max="2030" [(ngModel)]="data.lostDate"></ion-datetime>
+    </ion-item>
 
-    <!-- <ion-item>
-      <ion-label>Date of theft</ion-label>
-      <ion-select>
-        <ion-option value="nes">Lost</ion-option>
-        <ion-option value="n64">Nintendo64</ion-option>
-        <ion-option value="ps">PlayStation</ion-option>
-      </ion-select>
-    </ion-item> -->
 
   </ion-list>
-  <button ion-button block margin-top color="primary" (click)="addItem()">Add</button>
+  <button ion-button block margin-top color="primary" (click)="addItem()" *ngIf="!item">
+    <span *ngIf="!waiting" class="enter">Add</span>
+    <ion-spinner name="ios-small" *ngIf="waiting" color="light"></ion-spinner>
+  </button>
+
+  <button ion-button block margin-top color="primary" (click)="UpdateItem()" *ngIf="item"> update </button>
 </ion-content>

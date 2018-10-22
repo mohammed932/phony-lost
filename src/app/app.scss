@@ -1,15 +1,41 @@
+ion-icon {
+    &[class*="custom-"] {
+      mask-size: contain;
+      mask-position: 50% 50%;
+      mask-repeat: no-repeat;
+      background: currentColor;
+      width: 1em;
+      height: 1em;
+    }
+  
+    &[class*="custom-search"] {
+      mask-image: url(../assets/imgs/search.svg);
+    }
 
-// * {
-//     font-family: 'Cairo', sans-serif;
-//     font-size: 13px !important;
-// }
+    &[class*="custom-profile"] {
+        mask-image: url(../assets/imgs/profile.svg);
+    }
+
+    &[class*="custom-phone"] {
+        mask-image: url(../assets/imgs/call-answer.svg);
+    }
+
+
+    &[class*="custom-market"] {
+        mask-image: url(../assets/imgs/market.svg);
+    }
+
+    &[class*="custom-trash"] {
+        mask-image: url(../assets/imgs/trash.svg);
+    }
+
+  }
+
 
 .toolbar .toolbar-title{
    color: white !important;
 }
-.fab{
-    background-color: #c73030;
-}
+
 .ion-md-menu:before{
     color: white;
 }
