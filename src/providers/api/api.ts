@@ -11,12 +11,17 @@ export class ApiProvider {
   }
 
   getBrands(typeID): Observable<any> {
-    let url = `${this.settingService.URL}LookUp/GetBrands?typeID=${typeID}`
+    let url = `${this.settingService.URL}LookUp/GetBrands?typeName=${typeID}`
     return this.http.get(url);
   }
 
   getStatus(): Observable<any> {
     let url = `${this.settingService.URL}LookUp/GetStatus`
+    return this.http.get(url);
+  }
+
+  getItemsType(): Observable<any> {
+    let url = `${this.settingService.URL}LookUp/GetTypes`
     return this.http.get(url);
   }
 

@@ -1,7 +1,8 @@
+import { ApiProvider } from './../../providers/api/api';
 import { SettingsProvider } from './../../providers/settings/settings';
 import { ItemsProvider } from './../../providers/items/items';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ModalController, App, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ModalController, App, AlertController, LoadingController, ViewController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -9,25 +10,28 @@ import { IonicPage, NavController, NavParams, Events, ModalController, App, Aler
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  Cars: any[] = []
-  Mobiles: any[] = []
-  Cards: any[] = []
+  Items: any
   isLogin: boolean = false
+  Types: any
+  isLoading: boolean = true
   loading: any
   data: any = {
     status: 0
   }
+  isMarketPlace = this.navParams.get('isMarketPlace')
   constructor(public navCtrl: NavController,
     private event: Events,
     private app: App,
+    private api: ApiProvider,
     private loadingCtrl: LoadingController,
+    private viewCtrl: ViewController,
     private settingService: SettingsProvider,
     private alertCtrl: AlertController,
     private itemService: ItemsProvider,
     private modalCtrl: ModalController,
     public navParams: NavParams) {
     this.checkEvents()
-    this.getUserItems()
+    this.getItemsType()
   }
 
 
@@ -47,33 +51,14 @@ export class ProfilePage {
   }
 
   getUserItems() {
-    this.Mobiles.length = 0
-    this.Cars.length = 0
-    this.Cards.length = 0
     this.itemService.getUserItems().subscribe(data => {
       console.log("my items : ", data);
-      data.forEach(item => {
-        if (item.itemType == 'mobile') {
-          this.Mobiles.push(item)
-        } else if (item.itemType == 'car') {
-          this.Cars.push(item)
-        } else if (item.itemType == 'card') {
-          this.Cards.push(item)
-        }
-      })
+      this.Items = data
     })
   }
 
 
-  addItem(name) {
-    let cat: any = { name: name }
-    if (name == 'car') {
-      cat.id = 'e633a8d1-4662-49a4-b8ab-093b44d4670d'
-    } else if (name == 'mobile') {
-      cat.id = 'ed551702-81a0-4e16-b8f5-fb37e49fad65'
-    } else if (name == 'card') {
-      cat.id = '12276a20-1b2d-4816-8c81-d1d13ce92615'
-    }
+  addItem(cat) {
     this.navCtrl.push('AddItemPage', { cat })
   }
 
@@ -106,7 +91,6 @@ export class ProfilePage {
     alert.present();
   }
 
-
   deleteItem(item, index) {
     this.presendLoading()
     console.log("item : ", item);
@@ -131,12 +115,13 @@ export class ProfilePage {
     this.loading.present();
   }
 
-
   changeItemLostStatus(status, item) {
+    console.log(status);
+    console.log('item : ', item);
+
+
     if (status._value) {
       let params = { ItemId: item.id }
-      console.log("a6a66a6 : ", params);
-
       this.itemService.setItemAsLost(params).subscribe(data => {
         console.log("return data : ", data);
       })
@@ -150,5 +135,58 @@ export class ProfilePage {
   openItem(item, cat) {
     this.navCtrl.push('AddItemPage', { item: item, cat: cat })
   }
+
+
+  getItemsType() {
+    this.api.getItemsType().subscribe(data => {
+      this.Types = data
+      this.isLoading = false
+      this.getUserItems()
+    }, err => {
+      this.isLoading = false
+    })
+  }
+
+  getHeaderClass(type) {
+    switch (type) {
+      case 'Phones':
+        return 'card-header-wrapper1'
+      case 'Cards':
+        return 'card-header-wrapper2'
+      case 'Cars':
+        return 'card-header-wrapper'
+    }
+  }
+
+
+  getSecondHeaderClass(type) {
+    switch (type) {
+      case 'Phones':
+        return 'card-header-second1'
+      case 'Cards':
+        return 'card-header-second2'
+      case 'Cars':
+        return 'card-header-second'
+    }
+  }
+
+
+  getTypeImg(type) {
+    switch (type) {
+      case 'Phones':
+        return 'assets/imgs/smartphone.svg'
+      case 'Cards':
+        return 'assets/imgs/id-card.svg'
+      case 'Cars':
+        return 'assets/imgs/sports-car.svg'
+    }
+
+  }
+
+
+  dismiss() {
+    this.viewCtrl.dismiss()
+  }
+
 
 }

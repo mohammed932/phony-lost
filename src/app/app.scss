@@ -29,7 +29,11 @@ ion-icon {
         mask-image: url(../assets/imgs/trash.svg);
     }
 
-  }
+    &[class*="custom-photo"] {
+        mask-image: url(../assets/imgs/photo.svg);
+    }
+
+}
 
 
 .toolbar .toolbar-title{

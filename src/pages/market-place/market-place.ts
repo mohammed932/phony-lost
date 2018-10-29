@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,12 +15,20 @@ export class MarketPlacePage {
     { id: 5, name: 'hyundi verna' },
     { id: 6, name: 'kia kopi' },
   ]
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    private modalCtrl: ModalController,
+    public navParams: NavParams) {
 
   }
 
-  itemDetails(item){
-   this.navCtrl.push('ItemDetailsPage',{item})
+  itemDetails(item) {
+    this.navCtrl.push('ItemDetailsPage', { item })
+  }
+
+
+  addItem() {
+    let modal = this.modalCtrl.create('ProfilePage', { isMarketPlace: true })
+    modal.present()
   }
 
 

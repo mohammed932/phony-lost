@@ -2,6 +2,11 @@
 
   <ion-navbar color="primary">
     <ion-title>Profile</ion-title>
+    <ion-buttons start *ngIf="isMarketPlace">
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-close-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -10,27 +15,27 @@
 <ion-content padding>
 
   <div *ngIf="isLogin">
-    <!-- Cars -->
-    <ion-grid class="card-grid">
-      <ion-row class="card-header-wrapper">
+    <loading-spinner [hidden]="!isLoading"></loading-spinner>
+    <ion-grid class="card-grid" *ngFor="let type of Types" [hidden]="isLoading">
+      <ion-row [ngClass]="getHeaderClass(type.typeName)">
         <ion-col col-10>
           <ion-row>
             <ion-col col-2>
-              <img src="assets/imgs/sports-car.svg" class="card-icon">
+              <img [src]="getTypeImg(type.typeName)" class="card-icon">
             </ion-col>
             <ion-col col-10 align-self-center>
-              <div class="cat-txt">Car</div>
+              <div class="cat-txt">{{type.typeName}}</div>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col col-2>
-          <button ion-button class="add-btn" icon-only (click)="addItem('car')">
+          <button ion-button class="add-btn" icon-only (click)="addItem(type)">
             <ion-icon name="add"></ion-icon>
           </button>
         </ion-col>
       </ion-row>
 
-      <ion-row class="card-header-second">
+      <ion-row [ngClass]="getSecondHeaderClass(type.typeName)">
         <ion-col col-7>
           <div class="type">Type</div>
         </ion-col>
@@ -44,78 +49,17 @@
       </ion-row>
 
       <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let car of Cars;let index = index">
+        <ion-col col-12 *ngFor="let item of Items" [hidden]="type.typeName != item.itemType">
           <ion-row>
-            <ion-col col-7 align-self-center (click)="openItem(car , 'car')">
-              <div class="item-txt">{{car.brand}}
-                <span *ngIf="car.model">- {{car.model}}</span>
+            <ion-col col-7 align-self-center (click)="openItem(item)">
+              <div class="item-txt">
+                <span>{{item.deviceBrand}} - {{item.deviceModel}}</span>
               </div>
+
             </ion-col>
             <ion-col col-2 class="no-padding-left no-padding-right">
               <ion-item class="more-marign-left">
-                <ion-toggle item-start [checked]="car.status == 'LOST'" (ionChange)="changeItemLostStatus($event , car)"></ion-toggle>
-              </ion-item>
-            </ion-col>
-            <ion-col col-2 class="no-padding-left">
-              <ion-item>
-                <ion-toggle item-start></ion-toggle>
-              </ion-item>
-            </ion-col>
-
-            <ion-col col-1 class="no-padding-left" align-self-center>
-              <ion-icon name="custom-trash" class="trash-icon" (click)="ConfirmDeleteItem(car , index)"></ion-icon>
-            </ion-col>
-
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-
-    <!-- Mobiles -->
-    <ion-grid class="card-grid">
-      <ion-row class="card-header-wrapper1">
-        <ion-col col-10>
-          <ion-row>
-            <ion-col col-2>
-              <img src="assets/imgs/smartphone.svg" class="card-icon">
-            </ion-col>
-            <ion-col col-10 align-self-center>
-              <div class="cat-txt">Mobiles</div>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col col-2>
-          <button ion-button class="add-btn" icon-only (click)="addItem('mobile')">
-            <ion-icon name="add"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="card-header-second1">
-        <ion-col col-7>
-          <div class="type">Type</div>
-        </ion-col>
-        <ion-col col-2>
-          <div class="lost">Lost</div>
-        </ion-col>
-        <ion-col col-2>
-          <div class="sell">Sell</div>
-        </ion-col>
-        <ion-col col-1></ion-col>
-      </ion-row>
-
-      <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let mobile of Mobiles;let index = index">
-          <ion-row>
-            <ion-col col-7 align-self-center (click)="openItem(mobile , 'mobile')">
-              <div class="item-txt">{{mobile.brand}}
-                <span *ngIf="mobile.model">- {{mobile.model}}</span>
-              </div>
-            </ion-col>
-            <ion-col col-2 class="no-padding-left no-padding-right">
-              <ion-item class="more-marign-left">
-                <ion-toggle item-start [checked]="mobile.status == 'LOST'" (ionChange)="changeItemLostStatus($event , mobile)"></ion-toggle>
+                <ion-toggle item-start [checked]="item.status == 'Lost'" (ionChange)="changeItemLostStatus($event , item)"></ion-toggle>
               </ion-item>
             </ion-col>
             <ion-col col-2 class="no-padding-left">
@@ -133,61 +77,6 @@
       </ion-row>
     </ion-grid>
 
-
-
-
-    <!-- Identification Card -->
-    <ion-grid class="card-grid">
-      <ion-row class="card-header-wrapper2">
-        <ion-col col-10>
-          <ion-row>
-            <ion-col col-2>
-              <img src="assets/imgs/id-card.svg" class="card-icon">
-            </ion-col>
-            <ion-col col-10 align-self-center>
-              <div class="cat-txt">Personal Id</div>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col col-2>
-          <button ion-button class="add-btn" icon-only (click)="addItem('card')">
-            <ion-icon name="add"></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="card-header-second2">
-        <ion-col col-6>
-          <div class="type">Type</div>
-        </ion-col>
-        <ion-col col-3>
-          <div class="lost">Lost</div>
-        </ion-col>
-        <ion-col col-3>
-          <div class="sell">Sell</div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="items-row">
-        <ion-col col-12 *ngFor="let card of Cards">
-          <ion-row>
-            <ion-col col-6 align-self-center>
-              <div class="item-txt">Credit Card</div>
-            </ion-col>
-            <ion-col col-3 class="no-padding-left">
-              <ion-item>
-                <ion-toggle item-start></ion-toggle>
-              </ion-item>
-            </ion-col>
-            <ion-col col-3 class="no-padding-left">
-              <ion-item>
-                <ion-toggle item-start></ion-toggle>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
   </div>
 
   <ion-row *ngIf="!isLogin">

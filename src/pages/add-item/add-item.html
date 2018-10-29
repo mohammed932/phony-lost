@@ -25,45 +25,46 @@
       </ion-select>
     </ion-item>
 
-    <ion-item *ngIf="cat.name == 'mobile'">
+    <ion-item *ngIf="cat.typeName == 'Phones'">
       <ion-label>IEMI Number</ion-label>
       <ion-input [(ngModel)]="data.imei" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat.name == 'mobile'">
+    <ion-item *ngIf="cat.typeName == 'Phones'">
       <ion-label>IEMI Number 2</ion-label>
       <ion-input [(ngModel)]="data.imei2" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat.name == 'car'">
+    <ion-item *ngIf="cat.typeName == 'Cars'">
       <ion-label>Serial Number</ion-label>
       <ion-input [(ngModel)]="data.chassisNumber" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat == 'car'">
+    <ion-item *ngIf="cat.typeName == 'Cars'">
       <ion-label>Motor Number</ion-label>
       <ion-input [(ngModel)]="data.motorNumber" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat == 'car'">
+    <ion-item *ngIf="cat.typeName == 'Cars'">
       <ion-label>Plate Number</ion-label>
       <ion-input [(ngModel)]="data.plateNumber" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="cat !='card'">
+    <ion-item *ngIf="cat.typeName  !='Cards'">
       <ion-label>Purchase Date</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" min="2010" max="2030" [(ngModel)]="data.purchasingDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>{{getCat()}} status</ion-label>
-      <ion-select [(ngModel)]="data.StatusId">
+      <ion-select [(ngModel)]="data.StatusId" #status>
         <ion-option [value]="case.id" *ngFor="let case of Cases">{{case.statusTag}}</ion-option>
       </ion-select>
     </ion-item>
 
 
-    <ion-row *ngIf="data.status == 'Lost'">
+  
+    <ion-row *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
       <ion-col col-12>
         <div class="reward-txt no-padding-left">Financial reward in case of theft</div>
       </ion-col>
@@ -84,18 +85,36 @@
       </ion-col>
     </ion-row>
 
-    <ion-item *ngIf="data.status == 'Lost'">
+    <ion-item *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
       <ion-label>Place of theft</ion-label>
       <ion-input [(ngModel)]="data.lostPlace" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="data.status == 'Lost'">
+    <ion-item *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
       <ion-label>Theft Date</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" min="2010" max="2030" [(ngModel)]="data.lostDate"></ion-datetime>
     </ion-item>
 
+    <ion-item (click)="uploadPics()">
+        Upload images
+        <ion-icon name="custom-photo" item-end></ion-icon>
+    </ion-item>
 
   </ion-list>
+
+
+  <ion-row>
+
+    <ion-col col-4 *ngFor="let img of data.images;let index=index" [hidden]="data.images.length == 0">
+      <div class="service-img-wrapper">
+        <img [src]="" class="service-img">
+        <img src="assets/imgs/delete.svg" class="delete" (click)="deleteConfirmation(img,index)">
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+
   <button ion-button block margin-top color="primary" (click)="addItem()" *ngIf="!item">
     <span *ngIf="!waiting" class="enter">Add</span>
     <ion-spinner name="ios-small" *ngIf="waiting" color="light"></ion-spinner>

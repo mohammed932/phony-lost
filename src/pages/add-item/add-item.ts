@@ -4,6 +4,8 @@ import { ItemsProvider } from './../../providers/items/items';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import * as moment from 'moment';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Camera } from '@ionic-native/camera';
 @IonicPage()
 @Component({
   selector: 'page-add-item',
@@ -17,15 +19,21 @@ export class AddItemPage {
   item: any
   waiting: boolean = false
   data: any = {
-    lostDate: moment().format("MM/DD/YYYY")
+    lostDate: moment().format("MM/DD/YYYY"),
+    images: []
   }
   constructor(public navCtrl: NavController,
     private event: Events,
+    private imagePicker: ImagePicker,
     private settingService: SettingsProvider,
     private itemService: ItemsProvider,
+    private camera: Camera,
     private api: ApiProvider,
     public navParams: NavParams) {
     this.cat = this.navParams.get('cat')
+    this.data.ItemTypeId = this.cat.id
+    console.log('this.cat : ', this.cat);
+
     this.item = this.navParams.get('item') //when show item details
     this.getBrands()
     this.getStatus()
@@ -51,7 +59,7 @@ export class AddItemPage {
 
 
   getBrands() {
-    this.api.getBrands(this.cat.id).subscribe(data => {
+    this.api.getBrands(this.cat.typeName).subscribe(data => {
       this.Brands = data
     })
   }
@@ -71,16 +79,9 @@ export class AddItemPage {
 
   addItem() {
     this.waiting = true
+    delete this.data.brand
     console.log("data : ", this.data);
     this.data.userId = 'fe296355-cf30-40c0-bfdf-983f792d47ff'
-    if (this.cat.name == 'mobile') {
-      this.data.ItemTypeId = this.cat.id
-    } else if (this.cat.name == 'car') {
-      this.data.ItemTypeId = this.cat.id
-    } else {
-      this.data.ItemTypeId = this.cat.id
-    }
-    console.log("my data : ", this.data);
     this.itemService.addItem(this.data).subscribe(data => {
       this.event.publish('itemAdded')
       this.settingService.presentToast('item added succeessfully !')
@@ -95,6 +96,30 @@ export class AddItemPage {
 
   UpdateItem() {
     console.log("update");
+  }
+
+
+  uploadPics() {
+    let options = {
+      quality: 50,
+      outputType: 1,
+      allowEdit: true
+    }
+
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        this.data.images.push(`data:image/jpeg;base64,${results[i]}`)
+      }
+      console.log(" this.images : ", this.data.images);
+
+    }, (err) => { });
+
+  }
+
+
+  deleteConfirmation(img, index) {
+    console.log('img  : ', img)
+    console.log('index  : ', index)
   }
 
 

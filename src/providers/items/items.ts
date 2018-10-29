@@ -33,7 +33,11 @@ export class ItemsProvider {
   }
 
   setItemAsLost(params): Observable<any> {
+    params = {
+      userId: 'fe296355-cf30-40c0-bfdf-983f792d47ff',
+      ItemId : params.ItemId
+    }
     let url = `${this.settingService.URL}Items/SetItemAsLost?ItemId=${params.ItemId}&userId=fe296355-cf30-40c0-bfdf-983f792d47ff`
-    return this.http.put(url , params);
+    return this.http.put(url, JSON.stringify(params) );
   }
 }

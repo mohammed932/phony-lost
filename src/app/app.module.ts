@@ -12,7 +12,8 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { UserProvider } from '../providers/user/user';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ApiProvider } from '../providers/api/api';
-
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { ApiProvider } from '../providers/api/api';
     SettingsProvider,
     UserProvider,
     Keyboard,
-    ApiProvider
+    ApiProvider,
+    ImagePicker,
+    Camera
   ]
 })
 export class AppModule { }
