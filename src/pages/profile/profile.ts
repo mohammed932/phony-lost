@@ -118,10 +118,8 @@ export class ProfilePage {
   changeItemLostStatus(status, item) {
     console.log(status);
     console.log('item : ', item);
-
-
     if (status._value) {
-      let params = { ItemId: item.id }
+      let params = { ItemId: item.id , StatusName : 'Lost'}
       this.itemService.setItemAsLost(params).subscribe(data => {
         console.log("return data : ", data);
       })
@@ -132,8 +130,9 @@ export class ProfilePage {
   }
 
 
-  openItem(item, cat) {
-    this.navCtrl.push('AddItemPage', { item: item, cat: cat })
+  openItem(item) {
+    console.log('itemitemitem : ',item);
+    // this.navCtrl.push('AddItemPage', { item })
   }
 
 

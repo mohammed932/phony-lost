@@ -13,15 +13,15 @@
 
     <ion-item>
       <ion-label>Brand</ion-label>
-      <ion-select [(ngModel)]="data.brand" (ionChange)="selectModel(data.brand)">
-        <ion-option [value]="brand.id" *ngFor="let brand of Brands">{{brand.brandName}}</ion-option>
+      <ion-select [(ngModel)]="data.brandName" (ionChange)="selectModel(data.brandName)">
+        <ion-option [value]="brand.brandName" *ngFor="let brand of Brands">{{brand.brandName}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Model</ion-label>
-      <ion-select [(ngModel)]="data.ModelID">
-        <ion-option [value]="model.id" *ngFor="let model of Models">{{model.modelName}}</ion-option>
+      <ion-select [(ngModel)]="data.modelName">
+        <ion-option [value]="model.modelName" *ngFor="let model of Models">{{model.modelName}}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -57,14 +57,14 @@
 
     <ion-item>
       <ion-label>{{getCat()}} status</ion-label>
-      <ion-select [(ngModel)]="data.StatusId" #status>
-        <ion-option [value]="case.id" *ngFor="let case of Cases">{{case.statusTag}}</ion-option>
+      <ion-select [(ngModel)]="data.statusName" #status>
+        <ion-option [value]="case.statusTag" *ngFor="let case of Cases">{{case.statusTag}}</ion-option>
       </ion-select>
     </ion-item>
 
 
   
-    <ion-row *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
+    <ion-row *ngIf="data.statusName == 'Lost'">
       <ion-col col-12>
         <div class="reward-txt no-padding-left">Financial reward in case of theft</div>
       </ion-col>
@@ -85,12 +85,12 @@
       </ion-col>
     </ion-row>
 
-    <ion-item *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
+    <ion-item *ngIf="data.statusName == 'Lost'">
       <ion-label>Place of theft</ion-label>
       <ion-input [(ngModel)]="data.lostPlace" type="text"></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="data.StatusId == 'b7cd2f71-ec17-4dc0-85e5-174476d65dad'">
+    <ion-item *ngIf="data.statusName == 'Lost'">
       <ion-label>Theft Date</ion-label>
       <ion-datetime displayFormat="MM/DD/YYYY" min="2010" max="2030" [(ngModel)]="data.lostDate"></ion-datetime>
     </ion-item>

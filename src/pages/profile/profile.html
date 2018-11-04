@@ -55,7 +55,6 @@
               <div class="item-txt">
                 <span>{{item.deviceBrand}} - {{item.deviceModel}}</span>
               </div>
-
             </ion-col>
             <ion-col col-2 class="no-padding-left no-padding-right">
               <ion-item class="more-marign-left">
@@ -69,7 +68,7 @@
             </ion-col>
 
             <ion-col col-1 class="no-padding-left" align-self-center>
-              <ion-icon name="custom-trash" class="trash-icon" (click)="ConfirmDeleteItem(mobile , index)"></ion-icon>
+              <ion-icon name="custom-trash" class="trash-icon" (click)="ConfirmDeleteItem(item , index)"></ion-icon>
             </ion-col>
 
           </ion-row>

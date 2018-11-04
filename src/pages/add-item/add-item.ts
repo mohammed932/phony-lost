@@ -31,7 +31,7 @@ export class AddItemPage {
     private api: ApiProvider,
     public navParams: NavParams) {
     this.cat = this.navParams.get('cat')
-    this.data.ItemTypeId = this.cat.id
+    this.data.itemType = this.cat.typeName
     console.log('this.cat : ', this.cat);
 
     this.item = this.navParams.get('item') //when show item details
@@ -70,9 +70,9 @@ export class AddItemPage {
     })
   }
 
-  selectModel(brandId) {
+  selectModel(brand) {
     this.Brands.forEach(item => {
-      if (item.id == brandId)
+      if (item.brandName == brand)
         this.Models = item.deviceModels
     })
   }
